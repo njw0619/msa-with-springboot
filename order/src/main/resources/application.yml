@@ -1,0 +1,20 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: order
+  cloud:
+    openfeign:
+      client:
+        config:
+          product:
+            default-request-headers:
+              - Content-Type: application/json
+            request-interceptors:
+              - com.njw0619.msa.common.filter.CustomFeignClientInterceptor
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
